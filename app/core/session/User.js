@@ -12,8 +12,6 @@
      */
     function user($q, $http) {
 
-        const ENDPOINT_TODO = 'https://task-manager-elife.herokuapp.com/api/v1/tasks/';
-
         const User = function (data) {
             if (!!data) {
                 this.id = data.id;

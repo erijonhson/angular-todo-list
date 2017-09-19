@@ -12,6 +12,8 @@
 
         const ENDPOINT_LOGIN = "https://task-manager-elife.herokuapp.com/api/v1/users/sign_in";
         const ENDPOINT_SIGNUP = "https://task-manager-elife.herokuapp.com/api/v1/users/";
+        // const ENDPOINT_LOGIN = "http://0.0.0.0:3000/api/v1/users/sign_in";
+        // const ENDPOINT_SIGNUP = "http://0.0.0.0:3000/api/v1/users/";
 
         vm.login = function(user) {
             return $http.post(ENDPOINT_LOGIN, user).then(function(data) {

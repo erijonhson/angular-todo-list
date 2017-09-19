@@ -119,6 +119,9 @@
                         title: 'New todo',
                         breadcrumb: 'New'
                     },
+                    params: {
+                        obj: null
+                    },
                     views: {
                         'content@': {
                             templateUrl: 'core/todos/newView.html',
@@ -147,9 +150,8 @@
                         }
                     },
                     resolve: {
-                        doSignin: function ($location, sessionService, toastr) {
+                        doSignin: function ($location, sessionService) {
                             if (sessionService.getLoggedUser()) {
-                                toastr.success("Já existe Usuário logado.");
                                 // $state.go('root.todos.list');
                                 $location.path('/todos/list');
                             }
@@ -163,11 +165,9 @@
                         breadcrumb: 'Logout'
                     },
                     resolve: {
-                        doLogout: function ($location, sessionService, toastr) {
+                        doLogout: function ($location, sessionService) {
                             if (sessionService.getLoggedUser()) {
                                 sessionService.logout();
-                            } else {
-                                toastr.error("Não existe Usuário logado.");
                             }
                             // $state.go('root.signin');
                             $location.path('/signin');
