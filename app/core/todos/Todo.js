@@ -8,7 +8,7 @@
     todo.$inject = ['$q', '$http', 'toastr'];
 
     function todo($q, $http, toastr) {
-        const ENDPOINT_TODO = 'http://0.0.0.0:3000/api/v1/tasks/';
+        const ENDPOINT_TODO = 'https://task-manager-elife.herokuapp.com/api/v1/tasks/';
 
         const Todo = function (data) {
             if (!!data) {
