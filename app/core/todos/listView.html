@@ -17,12 +17,12 @@
                         <th class="col-xs-3">Ações</th>
                     </tr>
                 </thead>
-                <tr data-ng-repeat="todo in TLC.todos | filter: search track by $index" class="repeat-animation">
+                <tr data-ng-repeat="todo in TLC.getTodos() | filter: search track by $index" class="repeat-animation">
                     <td>{{$index + 1}}. </td>
                     <td><span class="done-{{todo.done}}">{{todo.title}}</span></td>
                     <td><input type="checkbox" data-ng-model="todo.done" title="Marcar como concluída" /></td>
                     <td>
-                        <button id="add-btn" class="btn btn-success" data-ui-sref="root.todos.new({todo: todo})">
+                        <button id="add-btn" class="btn btn-success" data-ui-sref="root.todos.new({todo: todo, todos: TLC.todos})">
                             <span class="glyphicon glyphicon-edit"></span></button>
                         <button id="add-btn" class="btn btn-danger" ng-click="TLC.deleteTodo(todo)">
                             <span class="glyphicon glyphicon-asterisk"></span></button>
@@ -34,7 +34,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-body">
-        <button id="add-btn" data-ui-sref="root.todos.new" class="btn btn-success">
-            Adicionar tarefa <span class="glyphicon glyphicon-plus"></span></button>
+        <button id="add-btn" data-ui-sref="root.todos.new({todos: TLC.todos})" class="btn btn-success">
+             <span class="glyphicon glyphicon-plus"></span></button>
     </div>
 </div>

@@ -11,6 +11,7 @@
 
         const Todo = function (data) {
             if (!!data) {
+                this.todos = [];
                 this.id = data.id;
                 this.title = data.title;
                 this.description = data.description;
@@ -18,62 +19,53 @@
             }
         }
 
-        Todo.prototype.addTodo = function () {
-            const todo = this.getData();
+        Todo.prototype.addOrUpdateTodo = function() {
+            var temp = this;
+            if (temp.id) {
+                return temp.updateTodo();
+            } else {
+                return temp.addTodo();
+            }
+        }
+
+        Todo.prototype.addTodo = function() {
+            var temp = this;
+            const todo = temp.getData();
             return $http.post(API_URIS.TODO, todo)
-                    .then(success)
-                    .catch(error);
+                    .then(success);
 
             function success(response) {
                 const todo = new Todo(response.data);
                 return { data: todo };
             }
-
-            function error(e) {
-                var message = e.errors ? e.errors : 'Erro ao adicionar a tarefa.';
-                toastr.error(message);
-            }
         }
 
-        Todo.prototype.updateTodo = function () {
-            const todo = this.getData();
+        Todo.prototype.updateTodo = function() {
+            var temp = this;
+            const todo = temp.getData();
             const uri = API_URIS.TODO + todo.id;
             return $http.put(uri, todo)
-                    .then(success)
-                    .catch(error);
+                    .then(success);
 
             function success(response) {
                 const todo = new Todo(response.data);
                 return { data: todo };
             }
-
-            function error(e) {
-                var message = e.errors ? e.errors : 'Erro ao atualizar a tarefa.';
-                toastr.error(message);
-            }
         }
 
-        Todo.prototype.deleteTodo = function () {
-            const todoCopy = angular.copy(this);
-            const todo = this.getData();
+        Todo.prototype.deleteTodo = function() {
+            var temp = this;
+            const todoCopy = angular.copy(temp);
+            const todo = temp.getData();
             const uri = API_URIS.TODO + todo.id;
-            return $http.delete(uri)
-                    .then(success)
-                    .catch(error);
-
-            function success(response) {
+            return $http.delete(uri).then(function success(response) {
                 return { data: todoCopy };
-            }
-
-            function error(e) {
-                var message = e.errors ? e.errors : 'Erro ao deletar a tarefa.';
-                toastr.error(message);
-            }
+            });
         }
 
         Todo.prototype.constructor = Todo;
 
-        Todo.prototype.getData = function () {
+        Todo.prototype.getData = function() {
             return {
                 id: this.id,
                 title: this.title,

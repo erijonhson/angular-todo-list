@@ -94,9 +94,6 @@
                         title: 'Todos',
                         breadcrumb: 'Todos'
                     },
-                    params: {
-                        todos: null
-                    },
                     resolve: {
                         checkLogin: checkLogin
                     }
@@ -107,15 +104,15 @@
                         title: 'To-do list',
                         breadcrumb: 'List'
                     },
-                    params: {
-                        todo: null
-                    },
                     views: {
                         'content@': {
                             templateUrl: 'core/todos/listView.html',
                             controller: 'TodosListController',
                             controllerAs: 'TLC'
                         }
+                    },
+                    resolve: {
+                        checkLogin: checkLogin
                     }
                 })
                 .state('root.todos.new', {
@@ -133,6 +130,9 @@
                             controller: 'TodosNewController',
                             controllerAs: 'TNC'
                         }
+                    },
+                    resolve: {
+                        checkLogin: checkLogin
                     }
                 })
                 .state('root.signup', {
