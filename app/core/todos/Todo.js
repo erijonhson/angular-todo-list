@@ -5,11 +5,9 @@
 
             .factory('Todo', todo);
 
-    todo.$inject = ['$q', '$http', 'toastr'];
+    todo.$inject = ['$q', '$http', 'toastr', 'API_URIS'];
 
-    function todo($q, $http, toastr) {
-        const ENDPOINT_TODO = 'https://task-manager-elife.herokuapp.com/api/v1/tasks/';
-        // const ENDPOINT_TODO = 'http://0.0.0.0:3000/api/v1/tasks/';
+    function todo($q, $http, toastr, API_URIS) {
 
         const Todo = function (data) {
             if (!!data) {
@@ -22,13 +20,13 @@
 
         Todo.prototype.addTodo = function () {
             const todo = this.getData();
-            return $http.post(ENDPOINT_TODO, todo)
+            return $http.post(API_URIS.TODO, todo)
                     .then(success)
                     .catch(error);
 
             function success(response) {
                 const todo = new Todo(response.data);
-                return todo.getData();
+                return { data: todo };
             }
 
             function error(e) {
@@ -39,14 +37,14 @@
 
         Todo.prototype.updateTodo = function () {
             const todo = this.getData();
-            const uri = ENDPOINT_TODO + todo.id;
+            const uri = API_URIS.TODO + todo.id;
             return $http.put(uri, todo)
                     .then(success)
                     .catch(error);
 
             function success(response) {
                 const todo = new Todo(response.data);
-                return todo.getData();
+                return { data: todo };
             }
 
             function error(e) {
@@ -58,18 +56,17 @@
         Todo.prototype.deleteTodo = function () {
             const todoCopy = angular.copy(this);
             const todo = this.getData();
-            const uri = ENDPOINT_TODO + todo.id;
+            const uri = API_URIS.TODO + todo.id;
             return $http.delete(uri)
                     .then(success)
                     .catch(error);
 
             function success(response) {
-                toastr.success('Deletado com sucesso.');
-                return todoCopy.getData();
+                return { data: todoCopy };
             }
 
             function error(e) {
-                var message = e.errors ? e.errors : 'Erro ao atualizar a tarefa.';
+                var message = e.errors ? e.errors : 'Erro ao deletar a tarefa.';
                 toastr.error(message);
             }
         }

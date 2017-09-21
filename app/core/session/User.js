@@ -5,12 +5,12 @@
 
             .factory('User', user);
 
-    user.$inject = ['$q', '$http'];
+    user.$inject = ['$q'];
 
     /**
      * Represents a User of the app.
      */
-    function user($q, $http) {
+    function user($q) {
 
         const User = function (data) {
             if (!!data) {

@@ -9,13 +9,11 @@
 
     function SessionController($state, sessionService, toastr) {
         var vm = this;
-        let ERROR = 'Favor verifique suas credencias.';
+        let ERROR = 'Favor atualize a página e verifique suas credencias.';
 
         vm.user = {};
-        vm.dataLoading = false;
  
         vm.signup = function (user) {
-            vm.dataLoading = true;
             vm.user = angular.copy(user);
             vm.user.password = md5(user.password);
             sessionService.signUp(vm.user)
@@ -27,25 +25,27 @@
               .catch(function(resp) {
                   console.log(resp);
                   toastr.error(resp.data.errors !== undefined ? resp.data.errors : ERROR);
-                  vm.dataLoading = false;
                   $state.reload();
               });
         }
 
         vm.signin = function (user) {
-            vm.dataLoading = true;
             vm.user = angular.copy(user);
             vm.user.password = md5(user.password);
             sessionService.login(vm.user)
                 .then(function(resp) {
                     console.log(resp);
                     toastr.success('Olá ' + resp.data.name);
-                    $state.go('root.todos.list');
+                    sessionService.listAllTodos().then(function(data) {
+                        $state.go('root.todos.list', { todos: data.data });
+                    })
                 })
                 .catch(function(resp) {
                     console.log(resp);
-                  toastr.error(resp.data.errors !== undefined ? resp.data.errors : ERROR);
-                    vm.dataLoading = false;
+                    if (resp.data)
+                        toastr.error(resp.data.errors ? resp.data.errors : ERROR);
+                    else
+                        toastr.error(ERROR);
                     $state.reload();
                 });
         };

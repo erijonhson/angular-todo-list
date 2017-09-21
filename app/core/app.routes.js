@@ -35,6 +35,7 @@
         $provide.factory('tokenInterceptor', ['$q', '$injector', tokenInterceptor]);
 
         $httpProvider.interceptors.push('tokenInterceptor');
+
     }
 
     stateConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -95,6 +96,9 @@
                         title: 'Todos',
                         breadcrumb: 'Todos'
                     },
+                    params: {
+                        todos: null
+                    },
                     resolve: {
                         checkLogin: checkLogin
                     }
@@ -104,6 +108,9 @@
                     data: {
                         title: 'To-do list',
                         breadcrumb: 'List'
+                    },
+                    params: {
+                        todo: null
                     },
                     views: {
                         'content@': {
@@ -120,13 +127,13 @@
                         breadcrumb: 'New'
                     },
                     params: {
-                        obj: null
+                        todo: null
                     },
                     views: {
                         'content@': {
                             templateUrl: 'core/todos/newView.html',
-                            controller: 'TodosListController',
-                            controllerAs: 'TLC'
+                            controller: 'TodosNewController',
+                            controllerAs: 'TNC'
                         }
                     }
                 })
