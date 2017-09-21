@@ -45,11 +45,6 @@
                 }
 
                 return { data: aux };
-            })
-            .catch(function() {
-                var message = e.errors ? e.errors : 
-                    'Erro ao deletar tarefas de usuário. Favor atualize a página!';
-                return $q.reject(message);
             });
         }
 
@@ -64,10 +59,6 @@
                     return item.id != copy.id;
                 });
                 return { data: copy };
-            }).catch(function() {
-                var message = e.errors ? e.errors : 
-                    'Erro ao deletar tarefas de usuário. Favor atualize a página!';
-                return $q.reject(message);
             });
         }
 
@@ -77,8 +68,7 @@
         User.prototype.loadTodos = function() {
             var temp = this;
             return $http.get(API_URIS.TODO)
-                    .then(success)
-                    .catch(error);
+                    .then(success);
 
             function success(response) {
                 temp.todos = [];
@@ -86,12 +76,6 @@
                     temp.todos.push(new Todo(t));
                 });
                 return { data: temp.todos };
-            }
-
-            function error(e) {
-                var message = e.errors ? e.errors : 
-                    'Erro ao buscar tarefas de usuário. Favor atualize a página!';
-                return $q.reject(message);
             }
         }
 

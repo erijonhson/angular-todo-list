@@ -9,6 +9,7 @@
             .constant('API_URIS', {
             	TODO: apiRoot + '/v1/tasks/',
             	SIGNUP: apiRoot + '/v1/users/',
-            	LOGIN: apiRoot + '/v1/users/sign_in'
+            	LOGIN: apiRoot + '/v1/sessions/',
+                LOGOUT: apiRoot + '/v1/sessions/'
         	});
 })();
