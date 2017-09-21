@@ -1,9 +1,13 @@
 <div class="panel panel-success">
-    <div class="panel-heading">
+    <div class="panel-heading clearfix">
+        <div class="btn-group pull-right">
+            <a data-ui-sref="root.todos.list" class="btn btn-link btn-xs">
+                <span class="glyphicon glyphicon-remove"></span></a>
+        </div>
         <h3 class="panel-title">Tarefa</h3>
     </div>
     <div class="panel-body">
-        <form name="form" data-ng-submit="TNC.resolve(TNC.todo)">
+        <form name="form" data-ng-submit="TNC.addOrUpdateTodo(TNC.todo)">
             <div class="form-group">
                 <label class="control-label" for="title">Nome:</label>
                 <input id="todo-name" class="form-control" name="title" type="text" 

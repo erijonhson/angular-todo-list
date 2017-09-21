@@ -36,25 +36,10 @@
             removeUserFromCache();
         };
 
-        vm.listAllTodos = function() {
-            return $http.get(API_URIS.TODO)
-                    .then(success)
-                    .catch(error);
-
-            function success(response) {
-                var todos = [];
-                response.data.tasks.forEach(function(t) {
-                    todos.push(new Todo(t));
-                });
-                return { data: todos };
-            }
-
-            function error(e) {
-                var message = e.errors ? e.errors : 
-                    'Erro ao buscar tarefas de usuário. Favor atualize a página!';
-                toastr.error(message);
-                return { data: [] };
-            }
+        vm.loadTodos = function() {
+            loggedUser.loadTodos().then(function(data) {
+                $state.go('root.todos.list');
+            });
         }
 
         function removeUserFromCache() {
@@ -77,9 +62,7 @@
             const cacheUser = getUserFromCache();
             if (cacheUser) {
                 loggedUser = new User(cacheUser);
-                vm.listAllTodos().then(function(data) {
-                    $state.go('root.todos.list', { todos: data.data });
-                });
+                vm.loadTodos();
             }
         })();
     }

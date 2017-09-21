@@ -36,9 +36,7 @@
                 .then(function(resp) {
                     console.log(resp);
                     toastr.success('Olá ' + resp.data.name);
-                    sessionService.listAllTodos().then(function(data) {
-                        $state.go('root.todos.list', { todos: data.data });
-                    })
+                    sessionService.loadTodos();
                 })
                 .catch(function(resp) {
                     console.log(resp);
