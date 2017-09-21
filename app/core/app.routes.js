@@ -42,8 +42,6 @@
     function stateConfig($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.when('', '/signin');
         $urlRouterProvider.when('/', '/signin');
-        $urlRouterProvider.when('/todos', '/todos/list');
-        $urlRouterProvider.when('/todos/', '/todos/list');
         $urlRouterProvider.otherwise('/');
 
         function checkLogin($state, sessionService, $q, toastr) {
