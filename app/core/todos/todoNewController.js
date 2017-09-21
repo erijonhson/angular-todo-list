@@ -21,7 +21,7 @@
         vm.addTodo = function (todo) {
             const todoCtrl = new Todo(todo);
             todoCtrl.addTodo().then(function(data) {
-                $state.go("root.todos.list");
+                $state.go("root.todos.list", { todo: data.data });
             })
             .catch(function(data) {
                 $state.go("root.todos.list");
@@ -31,15 +31,6 @@
         vm.updateTodo = function (todo) {
             const todoCtrl = new Todo(todo);
             todoCtrl.updateTodo().then(function(data) {
-                /**
-                var list = $stateParams.todos;
-                const todo = data.data;
-                for (var i in list) {
-                    if (list[i].id == todo.id) {
-                        list[i] = todo;
-                        break;
-                    }
-                } */
                 $state.go("root.todos.list", { todo: data.data });
             })
             .catch(function(data) {
