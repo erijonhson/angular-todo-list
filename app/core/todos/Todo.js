@@ -15,7 +15,7 @@
                 this.id = data.id;
                 this.title = data.title;
                 this.description = data.description;
-                this.deadline = data.deadline;
+                this.deadline = new Date(data.deadline);
             }
         }
 

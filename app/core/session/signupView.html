@@ -16,7 +16,7 @@
             </div>
             <div class="form-group has-feedback" data-ng-class="UserForm.password.$valid ? 'has-success' : (UserForm.password.$pristine ? '' : 'has-error')">
                 <label class="control-label" for="password">Senha:</label>
-                <input id="password" name="password" type="password" min="0" max="150" data-ng-model="SC.user.password" class="form-control" required />
+                <input id="password" name="password" type="password" minlength="6" maxlength="150" data-ng-model="SC.user.password" class="form-control" required />
                 <span class="glyphicon form-control-feedback" data-ng-class="UserForm.password.$valid ? 'glyphicon-ok' : (UserForm.password.$pristine ? '' : 'glyphicon-remove')"></span>
             </div>
             <button id="save-btn" class="btn btn-success" data-ng-click="SC.signup(SC.user)" data-ng-disabled="UserForm.$invalid">Cadastrar <span class="glyphicon glyphicon-ok"></span></button>

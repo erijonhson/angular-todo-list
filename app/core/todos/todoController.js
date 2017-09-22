@@ -1,13 +1,13 @@
 (function () {
     'use strict';
 
-    angular.module('app.todos.new', ['ui.router', 'ngAnimate', 'app.todo', 'app.sessionService'])
+    angular.module('app.todos.change', ['ui.router', 'ngAnimate', 'app.todo', 'app.sessionService'])
 
-            .controller('TodosNewController', TodosNewController);
+            .controller('TodosChangeController', TodosChangeController);
 
-    TodosNewController.$inject = ['$http', '$stateParams', '$state', 'Todo', 'sessionService', 'toastr'];
+    TodosChangeController.$inject = ['$http', '$stateParams', '$state', 'Todo', 'sessionService', 'toastr'];
 
-    function TodosNewController($http, $stateParams, $state, Todo, sessionService, toastr) {
+    function TodosChangeController($http, $stateParams, $state, Todo, sessionService, toastr) {
 
         var vm = this;
         vm.todo = new Todo();

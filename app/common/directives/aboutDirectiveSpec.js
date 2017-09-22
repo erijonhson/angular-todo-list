@@ -11,6 +11,6 @@ describe("About directive", function () {
         scope = $rootScope.$new();
         elm = angular.element('<span app-about></span>');
         $compile(elm)(scope);
-        expect(elm.text()).toEqual("angular-todo-list app v0.1.0 by Eri Jonhson");
+        expect(elm.text()).toEqual("angular-todo-list app v0.2.2 by Eri Jonhson");
     }));
 });
