@@ -27,6 +27,10 @@
             });
         };
 
+        vm.isLoggedIn = function() {
+            return !!loggedUser;
+        }
+
         vm.getLoggedUser = function() {
             return loggedUser;
         };
@@ -36,7 +40,7 @@
             return $http.delete(uri).then(function(data) {
                 loggedUser = null;
                 removeUserFromCache();
-                $state.go('root.signin');
+                // $state.go('root.signin');
             })
             .catch(function() {
                 toastr.error('Erro de conexão com o servidor. ' + 

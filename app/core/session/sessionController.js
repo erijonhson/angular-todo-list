@@ -9,10 +9,10 @@
 
     function SessionController($state, sessionService, toastr) {
         var vm = this;
-        let ERROR = 'Favor atualize a página e verifique suas credencias.';
+        let ERROR = 'Favor atualize a página, verifique suas credencias e sua conexão com a internet.';
 
         vm.user = {};
- 
+
         vm.signup = function (user) {
             vm.user = angular.copy(user);
             vm.user.password = md5(user.password);

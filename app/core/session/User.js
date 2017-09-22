@@ -18,7 +18,7 @@
                 this.id = data.id;
                 this.name = data.name;
                 this.email = data.email;
-                this.token = data.auth_token;
+                this.token = data.auth_token || data.token;
             }
         }
 

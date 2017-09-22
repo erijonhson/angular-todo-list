@@ -11,7 +11,7 @@
         'app.nav.menu',
         'app.todo',
         'app.todos.list',
-        'app.todos.new',
+        'app.todos.change',
         'app.directives.datepicker',
         'app.directives.about',
         'app.filters',

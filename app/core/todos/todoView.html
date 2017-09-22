@@ -1,30 +1,31 @@
 <div class="panel panel-success">
     <div class="panel-heading clearfix">
         <div class="btn-group pull-right">
-            <a data-ui-sref="root.todos.list" class="btn btn-link btn-xs">
+            <a data-ui-sref="root.todos.list" class="btn btn-link btn-xs" title="Cancelar">
                 <span class="glyphicon glyphicon-remove"></span></a>
         </div>
         <h3 class="panel-title">Tarefa</h3>
     </div>
     <div class="panel-body">
-        <form name="form" data-ng-submit="TNC.addOrUpdateTodo(TNC.todo)">
+        <form name="form" data-ng-submit="TCC.addOrUpdateTodo(TCC.todo)">
             <div class="form-group">
                 <label class="control-label" for="title">Nome:</label>
                 <input id="todo-name" class="form-control" name="title" type="text" 
-                       data-ng-model="TNC.todo.title" required />
+                       data-ng-model="TCC.todo.title" required />
             </div>
             <div class="form-group">
                 <label class="control-label" for="description">Descrição:</label>
-                <textarea id="todo-description" name="description" data-ng-model="TNC.todo.description" maxlength="500" 
+                <textarea id="todo-description" name="description" data-ng-model="TCC.todo.description" maxlength="500" 
                           class="form-control" required></textarea>
             </div>
             <div class="form-group">
                 <label class="control-label" for="deadline">Terminar em:</label>
+                <datetimepicker data-ng-model="data.embeddedDate" />
                 <input id="todo-deadline" class="form-control" name="deadline" type="text" 
-                       data-ng-model="TNC.todo.deadline" data-ng-date-picker="" required />
+                       data-ng-model="TCC.todo.deadline" data-ng-date-picker="" required />
             </div>
 
-            <button id="add-btn" class="btn btn-success" data-ng-disabled="form.$invalid">
+            <button id="add-btn" class="btn btn-success" data-ng-disabled="form.$invalid" title="Enviar alterações">
                 <span class="glyphicon glyphicon-ok"></span></button>
         </form>
     </div>

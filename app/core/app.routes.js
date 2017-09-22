@@ -45,7 +45,7 @@
         $urlRouterProvider.otherwise('/');
 
         function checkLogin($state, sessionService, $q, toastr) {
-            if (!sessionService.getLoggedUser()) {
+            if (!sessionService.isLoggedIn()) {
                 toastr.error('Faça login para continuar.');
                 $state.go('root.signin');
                 return $q.reject("Usuário não logado.");
@@ -110,29 +110,23 @@
                             controller: 'TodosListController',
                             controllerAs: 'TLC'
                         }
-                    },
-                    resolve: {
-                        checkLogin: checkLogin
                     }
                 })
-                .state('root.todos.new', {
-                    url: '/new',
+                .state('root.todos.change', {
+                    url: '/change',
                     data: {
-                        title: 'New todo',
-                        breadcrumb: 'New'
+                        title: 'Change todo',
+                        breadcrumb: 'Change'
                     },
                     params: {
                         todo: null
                     },
                     views: {
                         'content@': {
-                            templateUrl: 'core/todos/newView.html',
-                            controller: 'TodosNewController',
-                            controllerAs: 'TNC'
+                            templateUrl: 'core/todos/todoView.html',
+                            controller: 'TodosChangeController',
+                            controllerAs: 'TCC'
                         }
-                    },
-                    resolve: {
-                        checkLogin: checkLogin
                     }
                 })
                 .state('root.signup', {
@@ -156,26 +150,10 @@
                     },
                     resolve: {
                         doSignin: function ($location, sessionService) {
-                            if (sessionService.getLoggedUser()) {
+                            if (sessionService.isLoggedIn()) {
                                 // $state.go('root.todos.list');
                                 $location.path('/todos/list');
                             }
-                        }
-                    }
-                })
-                .state('root.logout', {
-                    url: 'logout',
-                    data: {
-                        title: 'Logout',
-                        breadcrumb: 'Logout'
-                    },
-                    resolve: {
-                        doLogout: function ($location, sessionService) {
-                            if (sessionService.getLoggedUser()) {
-                                sessionService.logout();
-                            }
-                            // $state.go('root.signin');
-                            $location.path('/signin');
                         }
                     }
                 });
