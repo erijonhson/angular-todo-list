@@ -5,15 +5,25 @@
 
             .controller('TodosListController', TodosListController);
 
-    TodosListController.$inject = ['Todo', 'sessionService', '$state', '$timeout', 'toastr'];
+    TodosListController.$inject = ['Todo', 'sessionService', '$state', '$timeout', '$q', 'toastr'];
 
-    function TodosListController(Todo, sessionService, $state, $timeout, toastr) {
+    function TodosListController(Todo, sessionService, $state, $timeout, $q, toastr) {
 
         var vm = this;
         vm.currentUser = sessionService.getLoggedUser();
 
         vm.getTodos = function() {
             return vm.currentUser.todos;
+        }
+
+        vm.updateTodoDone = function(todo) {
+            todo.updateTodoDone().catch(function error(e) {
+                todo.done = !todo.done;
+                var message = e.errors ? e.errors : 
+                    'Erro ao atualizar a tarefa.';
+                toastr.error(message);
+                return $q.reject(message);
+            });
         }
 
         vm.deleteTodo = function (todo) {
