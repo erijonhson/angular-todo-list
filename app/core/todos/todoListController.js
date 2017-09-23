@@ -11,6 +11,13 @@
 
         var vm = this;
         vm.currentUser = sessionService.getLoggedUser();
+        vm.modalShown = false;
+        vm.todoModal;
+
+        vm.toggleModal =function(todo) {
+            vm.todoModal = todo;
+            vm.modalShown = !vm.modalShown;
+        }
 
         vm.getTodos = function() {
             return vm.currentUser.todos;

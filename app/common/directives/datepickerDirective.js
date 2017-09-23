@@ -22,7 +22,7 @@
                 changeMonth: true,
                 showWeek: false,
                 firstDay: 1,
-                dayNames: 'en',
+                dayNames: 'pt-BR',
                 dateFormat: 'dd/mm/yy',
                 onSelect: onSelectFunc
             });

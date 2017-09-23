@@ -19,7 +19,9 @@
                 </thead>
                 <tr data-ng-repeat="todo in TLC.getTodos() | filter: search track by $index" class="repeat-animation">
                     <td>{{$index + 1}}. </td>
-                    <td><span class="done-{{todo.done}}" title="Clique para visualizar detalhes">{{todo.title}}</span></td>
+                    <td><a class="done-{{todo.done}}" ng-click="TLC.toggleModal(todo)" title="Clique para visualizar detalhes">
+                            {{todo.title}}</a>
+                    </td>
                     <td><input type="checkbox" data-ng-model="todo.done" ng-click="TLC.updateTodoDone(todo)" title="Marcar como concluída" /></td>
                     <td>
                         <button id="add-btn" class="btn btn-success" data-ui-sref="root.todos.change({todo: todo})" title="Editar tarefa">
@@ -38,3 +40,4 @@
             Adicionar Tarefa  <span class="glyphicon glyphicon-plus"></span></button>
     </div>
 </div>
+<div ng-include="'/core/todos/todoDetails.html'"></div>
