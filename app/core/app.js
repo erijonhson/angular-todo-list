@@ -14,6 +14,7 @@
         'app.todos.change',
         'app.directives.datepicker',
         'app.directives.about',
+        'app.directives.modal',
         'app.filters',
         'app.session',
         'app.sessionService',

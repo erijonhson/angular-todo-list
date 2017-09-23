@@ -1,0 +1,23 @@
+<modal-dialog show="TLC.modalShown">
+    <div class="panel">
+        <div class="panel-body">
+            <div class="list-group">
+                <a id="title" class="list-group-item active">
+                    <strong>Detalhes da Tarefa</strong>
+                </a>
+                <a class="list-group-item">
+                    <strong>Título: </strong> {{TLC.todoModal.title}}
+                </a>
+                <a class="list-group-item">
+                    <strong>Descrição: </strong> {{TLC.todoModal.description}}
+                </a>
+                <a class="list-group-item">
+                    <strong>Deadline: </strong>{{TLC.todoModal.deadline | date:"dd/MM/yyyy"}}
+                </a>
+                <a class="list-group-item">
+                    <strong>Finalizada: </strong>{{TLC.todoModal.done ? 'Sim' : 'Não'}}
+                </a>
+            </div>
+        </div>
+	</div>
+</modal-dialog>
